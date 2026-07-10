@@ -1,0 +1,16 @@
+# ──────────────────────────────────────────────
+# DigitLks — Public .htaccess (front controller)
+# ──────────────────────────────────────────────
+
+RewriteEngine On
+
+# ── Static assets: serve langsung ──
+RewriteRule \.(css|js|png|jpg|jpeg|gif|svg|ico|webp|woff2?|ttf|eot|pdf|json|txt|map)$ - [L,NC]
+
+# ── Folder publik: serve langsung ──
+RewriteRule ^(admin|s|api|assets|css|js|images|storage)/ - [L,NC]
+
+# ── Front controller ──
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

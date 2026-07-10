@@ -1,0 +1,27 @@
+# Environment
+.env
+
+# Dependencies
+vendor/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+storage/logs/
+storage/config/users.json
+storage/config/database.json
+storage/config/groq.json
+
+# Question files (user data)
+storage/accounts/*/soal/
+contoh/
+storage/accounts/*/index.json
+storage/accounts/*/whatsapp.json

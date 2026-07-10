@@ -1,0 +1,14 @@
+{
+  "orang_tua": {
+    "username": "admin",
+    "nama": "Orang Tua MVP"
+  },
+  "anak": {
+    "nama": "Anak Alpha",
+    "kelas": 6,
+    "cita_cita": "",
+    "motivasi_favorit": "",
+    "total_sesi": 0,
+    "rata_rata_skor": 0
+  }
+}

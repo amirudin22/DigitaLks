@@ -1,0 +1,31 @@
+# ──────────────────────────────────────────────
+# DigitLks — Root .htaccess
+# Document root: project root → rewrite to /public/
+# ──────────────────────────────────────────────
+
+RewriteEngine On
+
+# ── 1. Force HTTPS (direct + proxy/CDN + reverse-proxy) ──
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTP:X-Forwarded-SSL} !on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ── 2. Redirect ke /public/ ──
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+# ── 3. Security: blok akses file sensitif ──
+<FilesMatch "\.(env|env\.example|log|git|htaccess)$">
+    Require all denied
+</FilesMatch>
+
+# ── 4. Security headers ──
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ── 5. Prevent directory listing ──
+Options -Indexes
